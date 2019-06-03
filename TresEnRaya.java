@@ -6,10 +6,11 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -17,9 +18,12 @@ import javax.swing.JLabel;
  * @author Cintia Ortiz
  */
 public class TresEnRaya extends javax.swing.JFrame {
-    
-    String jugador1="o";
-    String jugador2="x";
+
+    String jugador1 = "o";
+    String jugador2 = "x";
+
+//    String[] turno = {"o", "x", "o", "x", "o", "x", "o", "x", "o"};
+    boolean turno = true;
 
     /**
      * Creates new form TresEnRaya
@@ -28,9 +32,13 @@ public class TresEnRaya extends javax.swing.JFrame {
         initComponents();
 
         setSize(500, 500);
-        
-        casillas();
 
+        casillas();
+            
+               lbl();
+        
+  
+        
 
     }
 
@@ -104,18 +112,174 @@ public class TresEnRaya extends javax.swing.JFrame {
         });
     }
 
-    
-    
-    public void casillas(){
-        JLabel[] casillas = new JLabel[]{lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8, lbl9};
-        
-        for(int i= 0; i<casillas.length;i++){
-            
-            casillas[i].setBorder( BorderFactory.createLineBorder(Color.BLACK));
-        }
-        
+    public void lbl() {
+
+        lbl1.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                if (turno == true) {
+
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl1.setIcon(img2);
+                } else {
+                    Image img1 = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img3 = new ImageIcon(img1.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl1.setIcon(img3);
+                }
+
+            }
+
+        });
+
+        lbl2.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+                if (turno == true) {
+                    Image img = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl2.setIcon(img2);
+                } else {
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl2.setIcon(img2);
+                }
+
+            }
+        });
+
+        lbl3.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                if (turno == true) {
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl3.setIcon(img2);
+                } else {
+                    Image img = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl3.setIcon(img2);
+                }
+
+            }
+        });
+
+        lbl4.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                if (turno == true) {
+                    Image img = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl4.setIcon(img2);
+                } else {
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl4.setIcon(img2);
+                }
+
+            }
+        });
+
+        lbl5.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                if (turno  == true) {
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl5.setIcon(img2);
+                } else {
+                    Image img = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl5.setIcon(img2);
+                }
+
+            }
+        });
+
+        lbl6.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                if (turno == true) {
+                    Image img = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl6.setIcon(img2);
+                } else {
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl6.setIcon(img2);
+                }
+
+            }
+        });
+
+        lbl7.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                if (turno== true) {
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl7.setIcon(img2);
+                } else {
+                    Image img = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl7.setIcon(img2);
+                }
+
+            }
+        });
+
+        lbl8.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                if (turno == true) {
+                    Image img = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl8.setIcon(img2);
+                } else {
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl8.setIcon(img2);
+                }
+
+            }
+        });
+
+        lbl9.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                if (turno== true) {
+                    Image img = new ImageIcon("juego/o.jpg").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl9.setIcon(img2);
+                } else {
+                    Image img = new ImageIcon("juego/x.png").getImage();
+                    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
+                    lbl9.setIcon(img2);
+                }
+
+            }
+        });
+
     }
-    
+
+    public void casillas() {
+        JLabel[] casillas = new JLabel[]{lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8, lbl9};
+
+        for (int i = 0; i < casillas.length; i++) {
+
+            casillas[i].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        }
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
