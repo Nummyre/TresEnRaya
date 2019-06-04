@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tresenraya;
 
 import java.awt.Color;
@@ -20,14 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class TresEnRaya extends javax.swing.JFrame {
 
-    int jugador1 = 1;
-    int jugador2 = 2;
 
     int turno = 0;
 
-    boolean fin_jeugo = false;
+ 
 
-//    boolean turno = true;
+
     /**
      * Creates new form TresEnRaya
      */
@@ -277,7 +270,7 @@ public class TresEnRaya extends javax.swing.JFrame {
 
     public void comprobarGanador() {
         
-        //Línea horizontal arriba ------
+        //Línea horizontal arriba 
         if (lbl1.getIcon() != null && lbl2.getIcon() != null && lbl3.getIcon() != null && lbl1.getIcon() == lbl2.getIcon() && lbl2.getIcon() == lbl3.getIcon()) {
 
             JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
