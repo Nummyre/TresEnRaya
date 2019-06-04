@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -128,9 +129,9 @@ public class TresEnRaya extends javax.swing.JFrame {
                 } else {
                     lbl1.setIcon(img3);
                     turno = 0;
-                    
-                }
 
+                }
+                comprobarGanador();
             }
 
         });
@@ -139,16 +140,16 @@ public class TresEnRaya extends javax.swing.JFrame {
 
             public void mouseClicked(MouseEvent e) {
                 if (turno == 0) {
-                   
-                    lbl2.setIcon(img2);
-                    turno ++;
-                } else {
-          
-                    lbl2.setIcon(img3);
-                    turno =0;
-                   ;
-                }
 
+                    lbl2.setIcon(img2);
+                    turno++;
+                } else {
+
+                    lbl2.setIcon(img3);
+                    turno = 0;
+                    ;
+                }
+                comprobarGanador();
             }
         });
 
@@ -157,15 +158,15 @@ public class TresEnRaya extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
 
                 if (turno == 0) {
-      
-                    lbl3.setIcon(img2);
-                    turno ++;
-                } else {
-                 
-                    lbl3.setIcon(img3);
-                    turno=0;
-                }
 
+                    lbl3.setIcon(img2);
+                    turno++;
+                } else {
+
+                    lbl3.setIcon(img3);
+                    turno = 0;
+                }
+                comprobarGanador();
             }
         });
 
@@ -173,16 +174,16 @@ public class TresEnRaya extends javax.swing.JFrame {
 
             public void mouseClicked(MouseEvent e) {
 
-                if (turno==0) {
-                 
+                if (turno == 0) {
+
                     lbl4.setIcon(img2);
                     turno++;
                 } else {
-                 
-                    lbl4.setIcon(img3);
-                    turno =0;
-                }
 
+                    lbl4.setIcon(img3);
+                    turno = 0;
+                }
+                comprobarGanador();
             }
         });
 
@@ -191,16 +192,16 @@ public class TresEnRaya extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
 
                 if (turno == 0) {
-             
-                    lbl5.setIcon(img2);
-        turno ++;
-                } else {
-               
-                   lbl5.setIcon(img3);
-        turno = 0;
-               }
 
-           }
+                    lbl5.setIcon(img2);
+                    turno++;
+                } else {
+
+                    lbl5.setIcon(img3);
+                    turno = 0;
+                }
+                comprobarGanador();
+            }
         });
 
         lbl6.addMouseListener(new MouseAdapter() {
@@ -208,49 +209,49 @@ public class TresEnRaya extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
 
                 if (turno == 0) {
-        
-                    lbl6.setIcon(img2);
-        turno ++;
-                } else {
-         
-                    lbl6.setIcon(img3);
-        turno = 0;
-                }
 
+                    lbl6.setIcon(img2);
+                    turno++;
+                } else {
+
+                    lbl6.setIcon(img3);
+                    turno = 0;
+                }
+                comprobarGanador();
             }
-       });
+        });
 
         lbl7.addMouseListener(new MouseAdapter() {
 
-          public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
 
-              if (turno == 0) {
-            
-                  lbl7.setIcon(img2);
-        turno ++;
+                if (turno == 0) {
+
+                    lbl7.setIcon(img2);
+                    turno++;
                 } else {
-    
-                    lbl7.setIcon(img3);
-        turno =0;
-                }
 
-           }
+                    lbl7.setIcon(img3);
+                    turno = 0;
+                }
+                comprobarGanador();
+            }
         });
 
         lbl8.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
 
-                if (turno==0) {
-              
-                    lbl8.setIcon(img2);
-        turno ++;
-                } else {
-                   
-                    lbl8.setIcon(img3);
-        turno =0;
-                }
+                if (turno == 0) {
 
+                    lbl8.setIcon(img2);
+                    turno++;
+                } else {
+
+                    lbl8.setIcon(img3);
+                    turno = 0;
+                }
+                comprobarGanador();
             }
         });
 
@@ -258,19 +259,97 @@ public class TresEnRaya extends javax.swing.JFrame {
 
             public void mouseClicked(MouseEvent e) {
 
-               if (turno == 0) {
-         
-                   lbl9.setIcon(img2);
-        turno ++;
-               } else {
-                 
-                   lbl9.setIcon(img3);
-        turno =0;
-               }
+                if (turno == 0) {
 
-           }
-       });
+                    lbl9.setIcon(img2);
+                    turno++;
+                } else {
 
+                    lbl9.setIcon(img3);
+                    turno = 0;
+                }
+                comprobarGanador();
+            }
+        });
+
+    }
+
+    public void comprobarGanador() {
+        
+        //Línea horizontal arriba ------
+        if (lbl1.getIcon() != null && lbl2.getIcon() != null && lbl3.getIcon() != null && lbl1.getIcon() == lbl2.getIcon() && lbl2.getIcon() == lbl3.getIcon()) {
+
+            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            resetea();
+            return;
+        }
+        // //Línea vertical izquierda
+        if (lbl1.getIcon() != null && lbl4.getIcon() != null && lbl7.getIcon() != null && lbl1.getIcon() == lbl4.getIcon() && lbl4.getIcon() == lbl7.getIcon()) {
+
+            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            resetea();
+            return;
+        }
+        ////Diagonal izquierda
+        if (lbl1.getIcon() != null && lbl5.getIcon() != null && lbl9.getIcon() != null && lbl1.getIcon() == lbl5.getIcon() && lbl5.getIcon() == lbl9.getIcon()) {
+
+            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            resetea();
+            return;
+        }
+        //horizontal del medio      
+        if (lbl4.getIcon() != null && lbl5.getIcon() != null && lbl6.getIcon() != null && lbl4.getIcon() == lbl5.getIcon() && lbl4.getIcon() == lbl6.getIcon()) {
+
+            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            resetea();
+            return;
+        }
+        // Línea horizontal inferior       
+        if (lbl7.getIcon() != null && lbl8.getIcon() != null && lbl9.getIcon() != null && lbl7.getIcon() == lbl8.getIcon() && lbl8.getIcon() == lbl9.getIcon()) {
+
+            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            resetea();
+            return;
+        }
+
+        //Línea vertical del medio
+        if (lbl2.getIcon() != null && lbl5.getIcon() != null && lbl8.getIcon() != null && lbl2.getIcon() == lbl5.getIcon() && lbl5.getIcon() == lbl8.getIcon()) {
+
+            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            resetea();
+            return;
+        }
+
+        //Línea vertical derecho
+        if (lbl3.getIcon() != null && lbl6.getIcon() != null && lbl9.getIcon() != null && lbl3.getIcon() == lbl6.getIcon() && lbl6.getIcon() == lbl9.getIcon()) {
+
+            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            resetea();
+            return;
+        }
+        //Línea diagonal derecho
+        if (lbl3.getIcon() != null && lbl5.getIcon() != null && lbl7.getIcon() != null && lbl3.getIcon() == lbl5.getIcon() && lbl5.getIcon() == lbl7.getIcon()) {
+
+            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            resetea();
+            return;
+        }
+
+    }
+    
+    public void resetea(){
+        
+     lbl1.setIcon(null);
+     lbl2.setIcon(null);
+     lbl3.setIcon(null);
+     lbl4.setIcon(null);
+     lbl5.setIcon(null);
+     lbl6.setIcon(null);
+     lbl7.setIcon(null);
+     lbl8.setIcon(null);
+     lbl9.setIcon(null);
+    
+        
     }
 
     public void casillas() {
