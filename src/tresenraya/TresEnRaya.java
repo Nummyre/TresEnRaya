@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javafx.scene.layout.Background;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -17,9 +18,7 @@ public class TresEnRaya extends javax.swing.JFrame {
 
 
     int turno = 0;
-
- 
-
+    int movimientos;
 
     /**
      * Creates new form TresEnRaya
@@ -120,12 +119,20 @@ public class TresEnRaya extends javax.swing.JFrame {
                 if (turno == 0) {
                     lbl1.setIcon(img2);
                     turno++;
+                    
                 } else {
                     lbl1.setIcon(img3);
                     turno = 0;
 
                 }
                 comprobarGanador();
+                
+                movimientos++;
+                
+                if(movimientos==9){
+                    
+                    resetea();
+                }
             }
 
         });
@@ -144,6 +151,13 @@ public class TresEnRaya extends javax.swing.JFrame {
                     ;
                 }
                 comprobarGanador();
+                
+                    movimientos++;
+                
+                if(movimientos==9){
+              
+                    resetea();
+                }
             }
         });
 
@@ -161,6 +175,13 @@ public class TresEnRaya extends javax.swing.JFrame {
                     turno = 0;
                 }
                 comprobarGanador();
+                
+                    movimientos++;
+                
+                if(movimientos==9){
+                  
+                    resetea();
+                }
             }
         });
 
@@ -178,6 +199,13 @@ public class TresEnRaya extends javax.swing.JFrame {
                     turno = 0;
                 }
                 comprobarGanador();
+                
+                    movimientos++;
+                
+                if(movimientos==9){
+                
+                    resetea();
+                }
             }
         });
 
@@ -195,6 +223,13 @@ public class TresEnRaya extends javax.swing.JFrame {
                     turno = 0;
                 }
                 comprobarGanador();
+                
+                    movimientos++;
+                
+                if(movimientos==9){
+                   
+                    resetea();
+                }
             }
         });
 
@@ -212,6 +247,13 @@ public class TresEnRaya extends javax.swing.JFrame {
                     turno = 0;
                 }
                 comprobarGanador();
+                
+                    movimientos++;
+                
+                if(movimientos==9){
+            
+                    resetea();
+                }
             }
         });
 
@@ -229,6 +271,13 @@ public class TresEnRaya extends javax.swing.JFrame {
                     turno = 0;
                 }
                 comprobarGanador();
+                
+                    movimientos++;
+                
+                if(movimientos==9){
+                 
+                    resetea();
+                }
             }
         });
 
@@ -246,6 +295,13 @@ public class TresEnRaya extends javax.swing.JFrame {
                     turno = 0;
                 }
                 comprobarGanador();
+                
+                    movimientos++;
+                
+                if(movimientos==9){
+        
+                    resetea();
+                }
             }
         });
 
@@ -263,13 +319,21 @@ public class TresEnRaya extends javax.swing.JFrame {
                     turno = 0;
                 }
                 comprobarGanador();
+                
+                    movimientos++;
+                
+                if(movimientos==9){
+                 
+                    resetea();
+                }
             }
         });
 
     }
 
     public void comprobarGanador() {
-        
+  
+         
         //Línea horizontal arriba 
         if (lbl1.getIcon() != null && lbl2.getIcon() != null && lbl3.getIcon() != null && lbl1.getIcon() == lbl2.getIcon() && lbl2.getIcon() == lbl3.getIcon()) {
 
@@ -325,9 +389,12 @@ public class TresEnRaya extends javax.swing.JFrame {
         if (lbl3.getIcon() != null && lbl5.getIcon() != null && lbl7.getIcon() != null && lbl3.getIcon() == lbl5.getIcon() && lbl5.getIcon() == lbl7.getIcon()) {
 
             JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+           
             resetea();
             return;
         }
+        
+      
 
     }
     
