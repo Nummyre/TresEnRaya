@@ -1,10 +1,8 @@
 package tresenraya;
-
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javafx.scene.layout.Background;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -16,21 +14,43 @@ import javax.swing.JOptionPane;
  */
 public class TresEnRaya extends javax.swing.JFrame {
 
-
     int turno = 0;
-    int movimientos;
+    int casillasMarcadas;
 
+    Image img = new ImageIcon("juego/o.png").getImage();
+    ImageIcon o = new ImageIcon(img.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+
+    Image img1 = new ImageIcon("juego/x.png").getImage();
+    ImageIcon x = new ImageIcon(img1.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+
+    Image empateIcono = new ImageIcon("juego/empate.png").getImage();
+    ImageIcon empate = new ImageIcon(empateIcono.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+    
+    Image tresIcono = new ImageIcon("juego/tres.png").getImage();
+    ImageIcon tres = new ImageIcon(tresIcono.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+
+    
+    String mensajeInformativo=" Acabas de iniciar el juego Tres En Raya.\n\n"
+            + "¿Cómo se juega?\n\n"
+            + "El juego trata de que cada jugador 'o' y 'x' vayan marcando las casillas\n"
+            + "alternadamente hasta que uno de los dos consiga hacer tres en raya.\n\n"
+            + "¿Estáis preparados?";
+    
+    
+   
     /**
      * Creates new form TresEnRaya
      */
     public TresEnRaya() {
         initComponents();
-
         setSize(500, 500);
+        setLocationRelativeTo(null);
+        
+        JOptionPane.showMessageDialog(null, mensajeInformativo, "¿Cómo se juega el Tres En Raya?",JOptionPane.PLAIN_MESSAGE, tres);
+               
 
         casillas();
-
-        lbl();
+        turnosClick();
 
     }
 
@@ -55,15 +75,33 @@ public class TresEnRaya extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tres en raya");
-        getContentPane().setLayout(new java.awt.GridLayout(3, 3, 5, 4));
+        getContentPane().setLayout(new java.awt.GridLayout(3, 3));
+
+        lbl1.setOpaque(true);
         getContentPane().add(lbl1);
+
+        lbl2.setOpaque(true);
         getContentPane().add(lbl2);
+
+        lbl3.setOpaque(true);
         getContentPane().add(lbl3);
+
+        lbl4.setOpaque(true);
         getContentPane().add(lbl4);
+
+        lbl5.setOpaque(true);
         getContentPane().add(lbl5);
+
+        lbl6.setOpaque(true);
         getContentPane().add(lbl6);
+
+        lbl7.setOpaque(true);
         getContentPane().add(lbl7);
+
+        lbl8.setOpaque(true);
         getContentPane().add(lbl8);
+
+        lbl9.setOpaque(true);
         getContentPane().add(lbl9);
 
         pack();
@@ -95,7 +133,6 @@ public class TresEnRaya extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TresEnRaya.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -105,34 +142,42 @@ public class TresEnRaya extends javax.swing.JFrame {
         });
     }
 
-    Image img = new ImageIcon("juego/o.jpg").getImage();
-    ImageIcon img2 = new ImageIcon(img.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
-    Image img1 = new ImageIcon("juego/x.png").getImage();
-    ImageIcon img3 = new ImageIcon(img1.getScaledInstance(159, 150, Image.SCALE_SMOOTH));
-
-    public void lbl() {
+    /**
+     * Método turnosClick() su función consiste cuando se hace un click en una
+     * casilla, se pase el turno y añade un JLabel "o" o "x". También si se pasa
+     * de los 9 click se abre un JOptionPane indicando que hay empate y se
+     * reinicia la tabla. Cuando hay 3 casillas iguales se comprueba si hay un
+     * ganador y se reinicia el juego.
+     */
+    public void turnosClick() {
 
         lbl1.addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
 
                 if (turno == 0) {
-                    lbl1.setIcon(img2);
+                    lbl1.setIcon(o);
+                    lbl1.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
-                    
+
                 } else {
-                    lbl1.setIcon(img3);
+                    lbl1.setIcon(x);
+                    lbl1.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
 
                 }
+
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                movimientos++;
-                
-                if(movimientos==9){
-                    
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
+
             }
 
         });
@@ -142,22 +187,27 @@ public class TresEnRaya extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (turno == 0) {
 
-                    lbl2.setIcon(img2);
+                    lbl2.setIcon(o);
+                    lbl2.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
                 } else {
 
-                    lbl2.setIcon(img3);
+                    lbl2.setIcon(x);
+                    lbl2.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
                     ;
                 }
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                    movimientos++;
-                
-                if(movimientos==9){
-              
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
+
             }
         });
 
@@ -167,21 +217,26 @@ public class TresEnRaya extends javax.swing.JFrame {
 
                 if (turno == 0) {
 
-                    lbl3.setIcon(img2);
+                    lbl3.setIcon(o);
+                    lbl3.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
                 } else {
 
-                    lbl3.setIcon(img3);
+                    lbl3.setIcon(x);
+                    lbl3.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
                 }
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                    movimientos++;
-                
-                if(movimientos==9){
-                  
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
+
             }
         });
 
@@ -191,19 +246,23 @@ public class TresEnRaya extends javax.swing.JFrame {
 
                 if (turno == 0) {
 
-                    lbl4.setIcon(img2);
+                    lbl4.setIcon(o);
+                    lbl4.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
                 } else {
 
-                    lbl4.setIcon(img3);
+                    lbl4.setIcon(x);
+                    lbl4.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
                 }
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                    movimientos++;
-                
-                if(movimientos==9){
-                
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
             }
@@ -215,19 +274,23 @@ public class TresEnRaya extends javax.swing.JFrame {
 
                 if (turno == 0) {
 
-                    lbl5.setIcon(img2);
+                    lbl5.setIcon(o);
+                    lbl5.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
                 } else {
 
-                    lbl5.setIcon(img3);
+                    lbl5.setIcon(x);
+                    lbl5.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
                 }
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                    movimientos++;
-                
-                if(movimientos==9){
-                   
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
             }
@@ -239,21 +302,26 @@ public class TresEnRaya extends javax.swing.JFrame {
 
                 if (turno == 0) {
 
-                    lbl6.setIcon(img2);
+                    lbl6.setIcon(o);
+                    lbl6.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
                 } else {
 
-                    lbl6.setIcon(img3);
+                    lbl6.setIcon(x);
+                    lbl6.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
                 }
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                    movimientos++;
-                
-                if(movimientos==9){
-            
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
+
             }
         });
 
@@ -263,21 +331,26 @@ public class TresEnRaya extends javax.swing.JFrame {
 
                 if (turno == 0) {
 
-                    lbl7.setIcon(img2);
+                    lbl7.setIcon(o);
+                    lbl7.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
                 } else {
 
-                    lbl7.setIcon(img3);
+                    lbl7.setIcon(x);
+                    lbl7.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
                 }
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                    movimientos++;
-                
-                if(movimientos==9){
-                 
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
+
             }
         });
 
@@ -287,21 +360,26 @@ public class TresEnRaya extends javax.swing.JFrame {
 
                 if (turno == 0) {
 
-                    lbl8.setIcon(img2);
+                    lbl8.setIcon(o);
+                    lbl8.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
                 } else {
 
-                    lbl8.setIcon(img3);
+                    lbl8.setIcon(x);
+                    lbl8.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
                 }
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                    movimientos++;
-                
-                if(movimientos==9){
-        
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
+
             }
         });
 
@@ -311,61 +389,91 @@ public class TresEnRaya extends javax.swing.JFrame {
 
                 if (turno == 0) {
 
-                    lbl9.setIcon(img2);
+                    lbl9.setIcon(o);
+                    lbl9.setHorizontalAlignment(JLabel.CENTER);
                     turno++;
                 } else {
 
-                    lbl9.setIcon(img3);
+                    lbl9.setIcon(x);
+                    lbl9.setHorizontalAlignment(JLabel.CENTER);
                     turno = 0;
                 }
+                casillasMarcadas++;
+                
                 comprobarGanador();
-                
-                    movimientos++;
-                
-                if(movimientos==9){
-                 
+
+                if (casillasMarcadas == 9) {
+
+                    JOptionPane.showMessageDialog(null, "¡¡Empate!! ¡Prueba de nuevo!", "Empate", JOptionPane.PLAIN_MESSAGE, empate);
+
                     resetea();
                 }
+
             }
         });
-
     }
 
+    /**
+     * Método comprobarGanador() su función consiste en comprobar 3 casillas en
+     * diferentes líneas(diagonal,vertical o horizontal), si son iguales, lanza
+     * un JOptionaPane indicando que ha ganado coloreando las casillas de color
+     * verde y se reinicia el juego.
+     *
+     */
     public void comprobarGanador() {
-  
-         
+
         //Línea horizontal arriba 
         if (lbl1.getIcon() != null && lbl2.getIcon() != null && lbl3.getIcon() != null && lbl1.getIcon() == lbl2.getIcon() && lbl2.getIcon() == lbl3.getIcon()) {
 
-            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            lbl1.setBackground(Color.green);
+            lbl2.setBackground(Color.green);
+            lbl3.setBackground(Color.green);
+
+            JOptionPane.showMessageDialog(null, "¡¡Has ganado!!", "Ganador", JOptionPane.PLAIN_MESSAGE, lbl1.getIcon());
             resetea();
             return;
         }
         // //Línea vertical izquierda
         if (lbl1.getIcon() != null && lbl4.getIcon() != null && lbl7.getIcon() != null && lbl1.getIcon() == lbl4.getIcon() && lbl4.getIcon() == lbl7.getIcon()) {
 
-            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            lbl1.setBackground(Color.green);
+            lbl4.setBackground(Color.green);
+            lbl7.setBackground(Color.green);
+
+            JOptionPane.showMessageDialog(null, "¡¡Has ganado!!", "Ganador", JOptionPane.PLAIN_MESSAGE, lbl1.getIcon());
             resetea();
             return;
         }
         ////Diagonal izquierda
         if (lbl1.getIcon() != null && lbl5.getIcon() != null && lbl9.getIcon() != null && lbl1.getIcon() == lbl5.getIcon() && lbl5.getIcon() == lbl9.getIcon()) {
 
-            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            lbl1.setBackground(Color.green);
+            lbl5.setBackground(Color.green);
+            lbl9.setBackground(Color.green);
+
+            JOptionPane.showMessageDialog(null, "¡¡Has ganado!!", "Ganador", JOptionPane.PLAIN_MESSAGE, lbl1.getIcon());
             resetea();
             return;
         }
         //horizontal del medio      
         if (lbl4.getIcon() != null && lbl5.getIcon() != null && lbl6.getIcon() != null && lbl4.getIcon() == lbl5.getIcon() && lbl4.getIcon() == lbl6.getIcon()) {
 
-            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            lbl4.setBackground(Color.green);
+            lbl5.setBackground(Color.green);
+            lbl6.setBackground(Color.green);
+
+            JOptionPane.showMessageDialog(null, "¡¡Has ganado!!", "Ganador", JOptionPane.PLAIN_MESSAGE, lbl4.getIcon());
             resetea();
             return;
         }
         // Línea horizontal inferior       
         if (lbl7.getIcon() != null && lbl8.getIcon() != null && lbl9.getIcon() != null && lbl7.getIcon() == lbl8.getIcon() && lbl8.getIcon() == lbl9.getIcon()) {
 
-            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            lbl7.setBackground(Color.green);
+            lbl8.setBackground(Color.green);
+            lbl9.setBackground(Color.green);
+
+            JOptionPane.showMessageDialog(null, "¡¡Has ganado!!", "Ganador", JOptionPane.PLAIN_MESSAGE, lbl7.getIcon());
             resetea();
             return;
         }
@@ -373,7 +481,11 @@ public class TresEnRaya extends javax.swing.JFrame {
         //Línea vertical del medio
         if (lbl2.getIcon() != null && lbl5.getIcon() != null && lbl8.getIcon() != null && lbl2.getIcon() == lbl5.getIcon() && lbl5.getIcon() == lbl8.getIcon()) {
 
-            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            lbl2.setBackground(Color.green);
+            lbl5.setBackground(Color.green);
+            lbl8.setBackground(Color.green);
+
+            JOptionPane.showMessageDialog(null, "¡¡Has ganado!!", "Ganador", JOptionPane.PLAIN_MESSAGE, lbl2.getIcon());
             resetea();
             return;
         }
@@ -381,38 +493,72 @@ public class TresEnRaya extends javax.swing.JFrame {
         //Línea vertical derecho
         if (lbl3.getIcon() != null && lbl6.getIcon() != null && lbl9.getIcon() != null && lbl3.getIcon() == lbl6.getIcon() && lbl6.getIcon() == lbl9.getIcon()) {
 
-            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            lbl3.setBackground(Color.green);
+            lbl6.setBackground(Color.green);
+            lbl9.setBackground(Color.green);
+
+            JOptionPane.showMessageDialog(null, "¡¡Has ganado!!", "Ganador", JOptionPane.PLAIN_MESSAGE, lbl3.getIcon());
             resetea();
             return;
         }
         //Línea diagonal derecho
         if (lbl3.getIcon() != null && lbl5.getIcon() != null && lbl7.getIcon() != null && lbl3.getIcon() == lbl5.getIcon() && lbl5.getIcon() == lbl7.getIcon()) {
 
-            JOptionPane.showMessageDialog(null, "¡Has ganado!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-           
+            lbl3.setBackground(Color.green);
+            lbl5.setBackground(Color.green);
+            lbl7.setBackground(Color.green);
+
+            JOptionPane.showMessageDialog(null, "¡¡Has ganado!!", "Ganador", JOptionPane.PLAIN_MESSAGE, lbl3.getIcon());
+
             resetea();
             return;
         }
-        
-      
 
     }
-    
-    public void resetea(){
-        
-     lbl1.setIcon(null);
-     lbl2.setIcon(null);
-     lbl3.setIcon(null);
-     lbl4.setIcon(null);
-     lbl5.setIcon(null);
-     lbl6.setIcon(null);
-     lbl7.setIcon(null);
-     lbl8.setIcon(null);
-     lbl9.setIcon(null);
-    
-        
+
+    /**
+     * Método resetea() su función consiste en reiniciar el tablero por defecto
+     * para que se comience una partida nueva.
+     *
+     */
+    public void resetea() {
+
+        casillasMarcadas = 0;
+
+        lbl1.setIcon(null);
+        lbl1.setBackground(null);
+
+        lbl2.setIcon(null);
+        lbl2.setBackground(null);
+
+        lbl3.setIcon(null);
+        lbl3.setBackground(null);
+
+        lbl4.setIcon(null);
+        lbl4.setBackground(null);
+
+        lbl5.setIcon(null);
+        lbl5.setBackground(null);
+
+        lbl6.setIcon(null);
+        lbl6.setBackground(null);
+
+        lbl7.setIcon(null);
+        lbl7.setBackground(null);
+
+        lbl8.setIcon(null);
+        lbl8.setBackground(null);
+
+        lbl9.setIcon(null);
+        lbl9.setBackground(null);
+
     }
 
+    /**
+     * Método casillas() su función consiste en darle bordes a las casillas.
+     *
+     * Tiene un array de JLabel de todas las casillas.
+     */
     public void casillas() {
         JLabel[] casillas = new JLabel[]{lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8, lbl9};
 
